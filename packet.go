@@ -325,6 +325,14 @@ func (p *Packet) GetNASIdentifier() string {
 	return avp.Decode(p).(string)
 }
 
+func (p *Packet) GetCalledStationId() string {
+	avp := p.GetAVP(CalledStationId)
+	if avp == nil {
+		return ""
+	}
+	return avp.Decode(p).(string)
+}
+
 func (p *Packet) GetEAPMessage() *EapPacket {
 	avp := p.GetAVP(EAPMessage)
 	if avp == nil {

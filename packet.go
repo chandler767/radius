@@ -340,3 +340,11 @@ func (p *Packet) GetEAPMessage() *EapPacket {
 	}
 	return avp.Decode(p).(*EapPacket)
 }
+
+func (p *Packet) GetAcctSessionTime() uint32 {
+	avp := p.GetAVP(AcctSessionTime)
+	if avp == nil {
+		return 0
+	}
+	return avp.Decode(p).(uint32)
+}
